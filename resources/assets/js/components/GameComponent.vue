@@ -116,6 +116,7 @@
                 this.correct='';
                 this.seen= false;
                 this.main= false;
+                // session().flash('lifeline','No lives:wait');
                 window.location.href = '/categories';
 
             }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use DB;
 use Auth;
+use Session;
 use App\User;
 use App\Play;
 use App\Profile;
@@ -61,6 +62,8 @@ class HomeController extends Controller
                                     ->inRandomOrder()->take(6)->get();
             if(!$questions->first()){
                 // dd('here: empty question set');
+                $session('over','No more questions ');
+                // Session::flash('message1', 'My message');
                 return redirect()->back();
             }
 
@@ -72,6 +75,7 @@ class HomeController extends Controller
         //dd('already exists');
   
         if($categoryprofile->life== 0){
+            Session::flash('lifeline','No lives:wait');
             return redirect()->back();
         }
         $cat_score= Categoryprofile::where('category_id', $id)
